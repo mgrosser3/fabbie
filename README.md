@@ -35,10 +35,10 @@ $ ghci
 
 -- Inspect a product:
 > name ironPlate
-ProductName "Iron Plate"
+Iron Plate
 
 -- Access its ingredients:
-> unwrapRecipe (recipe ironPlate)
-[Ingredient (ProductName "Iron Ore",1)]
-
+> recipe redSciencePack
+- Chopper Plate, 1
+- Iron Gear Wheel, 1
 ```

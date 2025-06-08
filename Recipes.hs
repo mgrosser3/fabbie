@@ -1,6 +1,7 @@
 module Recipes where
 
 import qualified Data.Map as Map
+import Distribution.PackageDescription (withBenchmark)
 
 type Amount = Int
 
@@ -8,9 +9,21 @@ type TimeInSec = Double
 
 newtype ProductName = ProductName String deriving (Eq, Ord)
 
+-- Converts a ProductName to a readable String.
+-- It can be auto-generated with:
+--     `newtype ProductName = ProductName String deriving (Show)`
+instance Show ProductName where
+  show (ProductName name) = name
+
 newtype Ingredient = Ingredient (ProductName, Amount)
 
+instance Show Ingredient where
+  show (Ingredient (name, amount)) = show name ++ ", " ++ show amount
+
 newtype ProductRecipe = ProductRecipe [Ingredient]
+
+instance Show ProductRecipe where
+  show (ProductRecipe ingredients) = unlines (map (\ingredient -> "- " ++ show ingredient) ingredients)
 
 data Product = Product
   { name :: ProductName,
